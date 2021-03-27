@@ -55,4 +55,8 @@ describe('TrailerService', () => {
   it('should fail to get media URL from invalid IMDB ID', async () => {
     expect(async () => await trailerService.getTrailerMedia('not_valid_id')).rejects.toThrowError(BadRequestException);
   });
+
+  it('should fail to get media URL from empty IMDB ID', async () => {
+    expect(async () => await trailerService.getTrailerMedia('')).rejects.toThrowError(BadRequestException);
+  });
 });
