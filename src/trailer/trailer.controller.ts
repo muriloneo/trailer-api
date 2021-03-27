@@ -17,13 +17,11 @@ export class TrailerController {
     let movieMedia;
     try {
       movieMedia = await this.cacheManager.get(hash);
-      if (movieMedia) {
-        return movieMedia;
-      } else {
+      if (!movieMedia) {
         movieMedia = this.trailerService.getTrailer(trailerInputDto);
         this.cacheManager.set(hash, movieMedia, { ttl: null });
-        return movieMedia;
       }
+      return movieMedia;
     } catch (e) {
       throw new NotFoundException;
     }
