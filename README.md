@@ -34,10 +34,9 @@ $ npm run test
 - It was tested with ab [MACOS] and autocannon.
 - The results came up to 480k requests in 30s with avg 16k requests per second, on my local machine.
 
-## Must Have (over next versions)
+## Must Have (next versions)
 
 - Docker / ECS
-- 
 
 # To Go Live
 
