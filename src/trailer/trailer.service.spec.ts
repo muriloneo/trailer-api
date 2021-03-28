@@ -6,9 +6,9 @@ import { TrailerService } from './trailer.service';
 
 describe('TrailerService', () => {
   let trailerService: TrailerService;
-  const trailerInputDto: TrailerInputDto = { vp_link: 'https://content.viaplay.se/pc-se/film/arrival-2016' };
-  const arrivalIMDB_ID = 'tt2543164';
-  const arrivalMediaURL = 'http://youtu.be/watch?v=tFMo3UJ4B4g';
+  const trailerInputDto: TrailerInputDto = { vp_link: 'https://content.viaplay.se/pc-se/film/troja-2004' };
+  const movieIMDB_ID = 'tt0332452';
+  const movieMediaURL = 'http://youtu.be/watch?v=enJYNuWBJ9g';
 
 
   beforeEach(async () => {
@@ -33,19 +33,19 @@ describe('TrailerService', () => {
   it('should return IMDB ID from Viaplay URL', async () => {
     const mediaId = await trailerService.getViaplayIMDB(trailerInputDto.vp_link);
 
-    expect(mediaId).toEqual(arrivalIMDB_ID);
+    expect(mediaId).toEqual(movieIMDB_ID);
   });
 
   it('should get media URL from the IMDB ID', async () => {
-    const mediaURL = await trailerService.getTrailerMedia(arrivalIMDB_ID);
+    const mediaURL = await trailerService.getTrailerMedia(movieIMDB_ID);
 
-    expect(mediaURL).toEqual(arrivalMediaURL);
+    expect(mediaURL).toEqual(movieMediaURL);
   });
 
   it('should return media URL from Viaplay URL', async () => {
     const mediaURL = await trailerService.getTrailer(trailerInputDto);
 
-    expect(mediaURL).toEqual(arrivalMediaURL);
+    expect(mediaURL).toEqual(movieMediaURL);
   });
 
   it('should fail to get IMDB ID from invalid Viaplay URL', async () => {
