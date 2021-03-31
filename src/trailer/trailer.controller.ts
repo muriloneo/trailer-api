@@ -1,4 +1,14 @@
-import { CacheInterceptor, CACHE_MANAGER, Controller, Get, Inject, NotFoundException, Query, UseInterceptors, ValidationPipe } from '@nestjs/common';
+import {
+  CacheInterceptor,
+  CACHE_MANAGER,
+  Controller,
+  Get,
+  Inject,
+  NotFoundException,
+  Query,
+  UseInterceptors,
+  ValidationPipe,
+} from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,7 +18,10 @@ import { TrailerInputDto } from './trailer-input.dto';
 @Controller('trailer')
 @UseInterceptors(CacheInterceptor)
 export class TrailerController {
-  constructor(private trailerService: TrailerService, @Inject(CACHE_MANAGER) private cacheManager: Cache) { }
+  constructor(
+    private trailerService: TrailerService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
 
   @Get()
   async getTrailer(@Query(ValidationPipe) trailerInputDto: TrailerInputDto) {
@@ -23,9 +36,7 @@ export class TrailerController {
       }
       return movieMedia;
     } catch (e) {
-      throw new NotFoundException;
+      throw new NotFoundException();
     }
-
   }
-
 }

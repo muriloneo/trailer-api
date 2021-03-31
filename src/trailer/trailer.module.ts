@@ -8,10 +8,10 @@ import { TrailerService } from './trailer.service';
       timeout: 5000,
     }),
     CacheModule.register({
-      ttl: null
-    })
+      ttl: null,
+    }),
   ],
   controllers: [TrailerController],
-  providers: [TrailerService]
+  providers: [TrailerService],
 })
-export class TrailerModule { }
+export class TrailerModule {}

@@ -17,15 +17,17 @@ describe('TrailerController', () => {
           maxRedirects: 2,
         }),
         CacheModule.register({
-          ttl: null
-        })
-      ]
+          ttl: null,
+        }),
+      ],
     }).compile();
 
     trailerController = module.get<TrailerController>(TrailerController);
   });
 
   it('should fail with empty params on getTrailer', async () => {
-    expect(async () => await trailerController.getTrailer({ vp_link: '' })).rejects.toThrow(BadRequestException);
-  })
+    expect(
+      async () => await trailerController.getTrailer({ vp_link: '' }),
+    ).rejects.toThrow(BadRequestException);
+  });
 });

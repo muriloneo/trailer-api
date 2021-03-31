@@ -6,10 +6,11 @@ import { TrailerService } from './trailer.service';
 
 describe('TrailerService', () => {
   let trailerService: TrailerService;
-  const trailerInputDto: TrailerInputDto = { vp_link: 'https://content.viaplay.se/pc-se/film/troja-2004' };
+  const trailerInputDto: TrailerInputDto = {
+    vp_link: 'https://content.viaplay.se/pc-se/film/troja-2004',
+  };
   const movieIMDB_ID = 'tt0332452';
   const movieMediaURL = 'http://youtu.be/watch?v=enJYNuWBJ9g';
-
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -19,8 +20,8 @@ describe('TrailerService', () => {
         HttpModule.register({
           timeout: 5000,
           maxRedirects: 2,
-        })
-      ]
+        }),
+      ],
     }).compile();
 
     trailerService = module.get<TrailerService>(TrailerService);
@@ -31,7 +32,9 @@ describe('TrailerService', () => {
   });
 
   it('should return IMDB ID from Viaplay URL', async () => {
-    const mediaId = await trailerService.getViaplayIMDB(trailerInputDto.vp_link);
+    const mediaId = await trailerService.getViaplayIMDB(
+      trailerInputDto.vp_link,
+    );
 
     expect(mediaId).toEqual(movieIMDB_ID);
   });
@@ -49,14 +52,20 @@ describe('TrailerService', () => {
   });
 
   it('should fail to get IMDB ID from invalid Viaplay URL', async () => {
-    expect(async () => await trailerService.getViaplayIMDB('not-a-url')).rejects.toThrowError(BadRequestException);
+    expect(
+      async () => await trailerService.getViaplayIMDB('not-a-url'),
+    ).rejects.toThrowError(BadRequestException);
   });
 
   it('should fail to get media URL from invalid IMDB ID', async () => {
-    expect(async () => await trailerService.getTrailerMedia('not_valid_id')).rejects.toThrowError(BadRequestException);
+    expect(
+      async () => await trailerService.getTrailerMedia('not_valid_id'),
+    ).rejects.toThrowError(BadRequestException);
   });
 
   it('should fail to get media URL from empty IMDB ID', async () => {
-    expect(async () => await trailerService.getTrailerMedia('')).rejects.toThrowError(BadRequestException);
+    expect(
+      async () => await trailerService.getTrailerMedia(''),
+    ).rejects.toThrowError(BadRequestException);
   });
 });

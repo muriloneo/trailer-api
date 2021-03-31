@@ -17,6 +17,10 @@ This code describes an API to get trailer from [TMDB](https://developers.themovi
 $ npm install
 ```
 
+## USAGE
+
+http://localhost:3000/trailer?vp_link=https://content.viaplay.se/pc-se/film/troja-2004
+
 ## Running the app
 
 ```bash
